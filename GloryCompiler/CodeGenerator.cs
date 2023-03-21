@@ -71,8 +71,10 @@ namespace GloryCompiler
                         CompileNode(returnStatement.Expression, Operand.Eax);
                         CodeOutput.EmitJmp("EF" + _currentFunction.Name);
                         break;
+
                     case IfStatement ifStatement:
-                        Operand conditionResult = ScratchRegisterPool.AllocateScratchRegister();
+
+                        Operand conditionResult = RegisterPool.Allocate();
                         CompileNode(ifStatement.Condition, conditionResult);
                         CodeOutput.EmitCmp(conditionResult, Operand.ForLiteral(0));
                         ScratchRegisterPool.FreeScratchRegister(conditionResult);

@@ -122,7 +122,17 @@ namespace GloryCompiler
         }
 
         #endregion
+    }
 
+    internal class AllocatedRegister
+    {
+        Operand _operand;
+        public AllocatedRegister(Operand operand) => _operand = operand;
 
+        public Operand Access()
+        {
+            // TODO: When stack spilling we can make some smart decisions based on how these are used
+            return _operand;
+        }
     }
 }
